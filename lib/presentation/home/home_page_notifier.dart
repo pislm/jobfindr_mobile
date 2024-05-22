@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:get_it/get_it.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:jobfindr_mobile/core/logger.dart';
@@ -47,5 +45,6 @@ class HomePageNotifier extends _$HomePageNotifier {
 
   void setFilter(JobFilter filter) {
     state = state.copyWith(filter: filter);
+    state.pagingController.refresh();
   }
 }

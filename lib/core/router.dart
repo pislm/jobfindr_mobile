@@ -6,7 +6,7 @@ import '../data/model/job_model.dart';
 
 abstract class JobFindrRouter {
   static const String home = '/';
-  static String jobDetails(String id) => '/job/$id';
+  static const String jobDetails = '/job';
 
   static final router = GoRouter(
     routes: [
@@ -15,7 +15,7 @@ abstract class JobFindrRouter {
         builder: (context, state) => const HomePage(),
       ),
       GoRoute(
-        path: jobDetails(':id'),
+        path: jobDetails,
         builder: (context, state) => JobDetailPage(
           job: state.extra as JobModel,
         ),

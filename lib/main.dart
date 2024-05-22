@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:jobfindr_mobile/app.dart';
 import 'package:jobfindr_mobile/data/jobfindr_repository.dart';
+import 'package:talker_dio_logger/talker_dio_logger_interceptor.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: '.env');
@@ -13,10 +14,13 @@ Future<void> main() async {
 }
 
 void registerSingletons() {
-  GetIt.I.registerSingleton(
-    Dio(
-      BaseOptions(baseUrl: dotenv.env['BASE_URL']!),
+  final dio = Dio(
+    BaseOptions(
+      baseUrl: dotenv.env['BASE_URL']!,
     ),
   );
+  dio.interceptors.add(TalkerDioLogger());
+  GetIt.I.registerSingleton(dio);
+
   GetIt.I.registerSingleton(JobFindrRepository(GetIt.I<Dio>()));
 }

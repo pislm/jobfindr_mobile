@@ -20,9 +20,10 @@ JobFilter _$JobFilterFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$JobFilter {
-  String? get role => throw _privateConstructorUsedError;
+  @JsonKey(toJson: positionToJson)
+  Set<String> get position => throw _privateConstructorUsedError;
   @JsonKey(toJson: postedAfterToJson)
-  DateTime? get postedAfter => throw _privateConstructorUsedError;
+  DateTime? get pubDate => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
   String? get company => throw _privateConstructorUsedError;
 
@@ -38,8 +39,8 @@ abstract class $JobFilterCopyWith<$Res> {
       _$JobFilterCopyWithImpl<$Res, JobFilter>;
   @useResult
   $Res call(
-      {String? role,
-      @JsonKey(toJson: postedAfterToJson) DateTime? postedAfter,
+      {@JsonKey(toJson: positionToJson) Set<String> position,
+      @JsonKey(toJson: postedAfterToJson) DateTime? pubDate,
       String? location,
       String? company});
 }
@@ -57,19 +58,19 @@ class _$JobFilterCopyWithImpl<$Res, $Val extends JobFilter>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? role = freezed,
-    Object? postedAfter = freezed,
+    Object? position = null,
+    Object? pubDate = freezed,
     Object? location = freezed,
     Object? company = freezed,
   }) {
     return _then(_value.copyWith(
-      role: freezed == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String?,
-      postedAfter: freezed == postedAfter
-          ? _value.postedAfter
-          : postedAfter // ignore: cast_nullable_to_non_nullable
+      position: null == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
+      pubDate: freezed == pubDate
+          ? _value.pubDate
+          : pubDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       location: freezed == location
           ? _value.location
@@ -92,8 +93,8 @@ abstract class _$$JobFilterImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? role,
-      @JsonKey(toJson: postedAfterToJson) DateTime? postedAfter,
+      {@JsonKey(toJson: positionToJson) Set<String> position,
+      @JsonKey(toJson: postedAfterToJson) DateTime? pubDate,
       String? location,
       String? company});
 }
@@ -109,19 +110,19 @@ class __$$JobFilterImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? role = freezed,
-    Object? postedAfter = freezed,
+    Object? position = null,
+    Object? pubDate = freezed,
     Object? location = freezed,
     Object? company = freezed,
   }) {
     return _then(_$JobFilterImpl(
-      role: freezed == role
-          ? _value.role
-          : role // ignore: cast_nullable_to_non_nullable
-              as String?,
-      postedAfter: freezed == postedAfter
-          ? _value.postedAfter
-          : postedAfter // ignore: cast_nullable_to_non_nullable
+      position: null == position
+          ? _value._position
+          : position // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
+      pubDate: freezed == pubDate
+          ? _value.pubDate
+          : pubDate // ignore: cast_nullable_to_non_nullable
               as DateTime?,
       location: freezed == location
           ? _value.location
@@ -139,20 +140,28 @@ class __$$JobFilterImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$JobFilterImpl extends _JobFilter {
   _$JobFilterImpl(
-      {this.role,
-      @JsonKey(toJson: postedAfterToJson) this.postedAfter,
+      {@JsonKey(toJson: positionToJson) final Set<String> position = const {},
+      @JsonKey(toJson: postedAfterToJson) this.pubDate,
       this.location,
       this.company})
-      : super._();
+      : _position = position,
+        super._();
 
   factory _$JobFilterImpl.fromJson(Map<String, dynamic> json) =>
       _$$JobFilterImplFromJson(json);
 
+  final Set<String> _position;
   @override
-  final String? role;
+  @JsonKey(toJson: positionToJson)
+  Set<String> get position {
+    if (_position is EqualUnmodifiableSetView) return _position;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_position);
+  }
+
   @override
   @JsonKey(toJson: postedAfterToJson)
-  final DateTime? postedAfter;
+  final DateTime? pubDate;
   @override
   final String? location;
   @override
@@ -160,7 +169,7 @@ class _$JobFilterImpl extends _JobFilter {
 
   @override
   String toString() {
-    return 'JobFilter(role: $role, postedAfter: $postedAfter, location: $location, company: $company)';
+    return 'JobFilter(position: $position, pubDate: $pubDate, location: $location, company: $company)';
   }
 
   @override
@@ -168,9 +177,8 @@ class _$JobFilterImpl extends _JobFilter {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$JobFilterImpl &&
-            (identical(other.role, role) || other.role == role) &&
-            (identical(other.postedAfter, postedAfter) ||
-                other.postedAfter == postedAfter) &&
+            const DeepCollectionEquality().equals(other._position, _position) &&
+            (identical(other.pubDate, pubDate) || other.pubDate == pubDate) &&
             (identical(other.location, location) ||
                 other.location == location) &&
             (identical(other.company, company) || other.company == company));
@@ -178,8 +186,12 @@ class _$JobFilterImpl extends _JobFilter {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, role, postedAfter, location, company);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_position),
+      pubDate,
+      location,
+      company);
 
   @JsonKey(ignore: true)
   @override
@@ -197,8 +209,8 @@ class _$JobFilterImpl extends _JobFilter {
 
 abstract class _JobFilter extends JobFilter {
   factory _JobFilter(
-      {final String? role,
-      @JsonKey(toJson: postedAfterToJson) final DateTime? postedAfter,
+      {@JsonKey(toJson: positionToJson) final Set<String> position,
+      @JsonKey(toJson: postedAfterToJson) final DateTime? pubDate,
       final String? location,
       final String? company}) = _$JobFilterImpl;
   _JobFilter._() : super._();
@@ -207,10 +219,11 @@ abstract class _JobFilter extends JobFilter {
       _$JobFilterImpl.fromJson;
 
   @override
-  String? get role;
+  @JsonKey(toJson: positionToJson)
+  Set<String> get position;
   @override
   @JsonKey(toJson: postedAfterToJson)
-  DateTime? get postedAfter;
+  DateTime? get pubDate;
   @override
   String? get location;
   @override

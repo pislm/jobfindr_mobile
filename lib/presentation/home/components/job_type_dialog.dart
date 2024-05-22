@@ -10,17 +10,20 @@ class JobTypeDialog extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex =
-        useState<String?>(ref.read(homePageNotifierProvider).filter.role);
+        useState(ref.read(homePageNotifierProvider).filter.position);
     return AlertDialog(
       title: const Text('Job Type'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: JobFilter.roleOptions
             .map(
-              (role) => RadioListTile(
-                value: role,
-                groupValue: selectedIndex.value,
-                onChanged: (value) => selectedIndex.value = value,
+              (role) => CheckboxListTile(
+                value: selectedIndex.value.contains(role),
+                onChanged: (value) {
+                  selectedIndex.value = value!
+                      ? {...selectedIndex.value, role}
+                      : Set.from(selectedIndex.value.where((e) => e != role));
+                },
                 title: Text(role),
               ),
             )
@@ -33,7 +36,7 @@ class JobTypeDialog extends HookConsumerWidget {
                   ref
                       .read(homePageNotifierProvider)
                       .filter
-                      .copyWith(role: null),
+                      .copyWith(position: <String>{}),
                 );
             Navigator.of(context).pop();
           },
@@ -45,7 +48,7 @@ class JobTypeDialog extends HookConsumerWidget {
                   ref
                       .read(homePageNotifierProvider)
                       .filter
-                      .copyWith(role: selectedIndex.value),
+                      .copyWith(position: selectedIndex.value),
                 );
             Navigator.of(context).pop();
           },

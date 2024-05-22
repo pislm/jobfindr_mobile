@@ -34,8 +34,13 @@ class JobDetailPage extends ConsumerWidget {
               child: CachedNetworkImage(
                 imageUrl: job.logoImgLink,
                 height: 100,
+                errorWidget: (_, __, ___) => const Icon(
+                  Icons.work,
+                  color: Colors.grey,
+                ),
               ),
             ),
+            const SizedBox(height: 16),
             Hero(
               tag: 'title_${job.id}',
               child: Text(

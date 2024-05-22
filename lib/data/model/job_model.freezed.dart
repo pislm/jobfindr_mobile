@@ -20,7 +20,6 @@ JobModel _$JobModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$JobModel {
-  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   @JsonKey(fromJson: dateFromJson)
   DateTime get publicationDate => throw _privateConstructorUsedError;
@@ -43,8 +42,7 @@ abstract class $JobModelCopyWith<$Res> {
       _$JobModelCopyWithImpl<$Res, JobModel>;
   @useResult
   $Res call(
-      {String id,
-      String title,
+      {String title,
       @JsonKey(fromJson: dateFromJson) DateTime publicationDate,
       String location,
       String company,
@@ -67,7 +65,6 @@ class _$JobModelCopyWithImpl<$Res, $Val extends JobModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? title = null,
     Object? publicationDate = null,
     Object? location = null,
@@ -78,10 +75,6 @@ class _$JobModelCopyWithImpl<$Res, $Val extends JobModel>
     Object? position = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -127,8 +120,7 @@ abstract class _$$JobModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
-      String title,
+      {String title,
       @JsonKey(fromJson: dateFromJson) DateTime publicationDate,
       String location,
       String company,
@@ -149,7 +141,6 @@ class __$$JobModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
     Object? title = null,
     Object? publicationDate = null,
     Object? location = null,
@@ -160,10 +151,6 @@ class __$$JobModelImplCopyWithImpl<$Res>
     Object? position = null,
   }) {
     return _then(_$JobModelImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -204,8 +191,7 @@ class __$$JobModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$JobModelImpl extends _JobModel {
   _$JobModelImpl(
-      {required this.id,
-      required this.title,
+      {required this.title,
       @JsonKey(fromJson: dateFromJson) required this.publicationDate,
       required this.location,
       required this.company,
@@ -218,8 +204,6 @@ class _$JobModelImpl extends _JobModel {
   factory _$JobModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$JobModelImplFromJson(json);
 
-  @override
-  final String id;
   @override
   final String title;
   @override
@@ -240,7 +224,7 @@ class _$JobModelImpl extends _JobModel {
 
   @override
   String toString() {
-    return 'JobModel(id: $id, title: $title, publicationDate: $publicationDate, location: $location, company: $company, sourceSite: $sourceSite, linkDetail: $linkDetail, logoImgLink: $logoImgLink, position: $position)';
+    return 'JobModel(title: $title, publicationDate: $publicationDate, location: $location, company: $company, sourceSite: $sourceSite, linkDetail: $linkDetail, logoImgLink: $logoImgLink, position: $position)';
   }
 
   @override
@@ -248,7 +232,6 @@ class _$JobModelImpl extends _JobModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$JobModelImpl &&
-            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.publicationDate, publicationDate) ||
                 other.publicationDate == publicationDate) &&
@@ -267,8 +250,8 @@ class _$JobModelImpl extends _JobModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, publicationDate,
-      location, company, sourceSite, linkDetail, logoImgLink, position);
+  int get hashCode => Object.hash(runtimeType, title, publicationDate, location,
+      company, sourceSite, linkDetail, logoImgLink, position);
 
   @JsonKey(ignore: true)
   @override
@@ -286,8 +269,7 @@ class _$JobModelImpl extends _JobModel {
 
 abstract class _JobModel extends JobModel {
   factory _JobModel(
-      {required final String id,
-      required final String title,
+      {required final String title,
       @JsonKey(fromJson: dateFromJson) required final DateTime publicationDate,
       required final String location,
       required final String company,
@@ -300,8 +282,6 @@ abstract class _JobModel extends JobModel {
   factory _JobModel.fromJson(Map<String, dynamic> json) =
       _$JobModelImpl.fromJson;
 
-  @override
-  String get id;
   @override
   String get title;
   @override

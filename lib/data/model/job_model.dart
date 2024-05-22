@@ -8,7 +8,6 @@ class JobModel with _$JobModel {
   const JobModel._();
 
   factory JobModel({
-    required String id,
     required String title,
     @JsonKey(fromJson: dateFromJson) required DateTime publicationDate,
     required String location,
@@ -21,11 +20,14 @@ class JobModel with _$JobModel {
 
   factory JobModel.fromJson(Map<String, dynamic> json) =>
       _$JobModelFromJson(json);
+
+  String get id => hashCode.toString();
 }
 
-DateTime dateFromJson(String str) => DateTime.parse(str);
+DateTime dateFromJson(Map<String, dynamic> json) =>
+    DateTime.fromMillisecondsSinceEpoch(json['_seconds'] * 1000);
 
-const dummyJobs = [
+const dummyJobs = <Map<String, dynamic>>[
   {
     "id": "kalibrr-190478",
     "title": "Programmer",

@@ -27,8 +27,8 @@ class JobFiltersWidget extends ConsumerWidget {
           const SizedBox(width: 12),
           _buildFilterPill(
             context,
-            'Job Type${state.filter.role == null ? '' : ': ${state.filter.role}'}',
-            state.filter.role != null,
+            'Job Type${state.filter.position.isEmpty ? '' : ': ${state.filter.position.join(', ')}'}',
+            state.filter.position.isNotEmpty,
             () => showDialog(
               context: context,
               builder: (context) => const JobTypeDialog(),
@@ -36,15 +36,15 @@ class JobFiltersWidget extends ConsumerWidget {
           ),
           _buildFilterPill(
             context,
-            'Posted after${state.filter.postedAfter == null ? '' : ': ${DateFormat.yMMMMd().format(state.filter.postedAfter!)}'}',
-            state.filter.postedAfter != null,
+            'Posted after${state.filter.pubDate == null ? '' : ': ${DateFormat.yMMMMd().format(state.filter.pubDate!)}'}',
+            state.filter.pubDate != null,
             () => showDatePicker(
               context: context,
               firstDate: DateTime.now().subtract(const Duration(days: 61)),
               lastDate: DateTime.now(),
             ).then(
               (date) => ref.read(homePageNotifierProvider.notifier).setFilter(
-                    state.filter.copyWith(postedAfter: date),
+                    state.filter.copyWith(pubDate: date),
                   ),
             ),
           ),

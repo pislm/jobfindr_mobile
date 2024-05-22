@@ -9,8 +9,8 @@ class JobFilter with _$JobFilter {
   const JobFilter._();
 
   factory JobFilter({
-    String? role,
-    @JsonKey(toJson: postedAfterToJson) DateTime? postedAfter,
+    @Default({}) @JsonKey(toJson: positionToJson) Set<String> position,
+    @JsonKey(toJson: postedAfterToJson) DateTime? pubDate,
     String? location,
     String? company,
   }) = _JobFilter;
@@ -31,4 +31,10 @@ String? postedAfterToJson(DateTime? postedAfter) {
 
   final formatter = DateFormat('yyyy-MM-dd');
   return formatter.format(postedAfter);
+}
+
+String? positionToJson(Set<String> position) {
+  if (position.isEmpty) return null;
+
+  return position.join(',');
 }

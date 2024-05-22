@@ -8,9 +8,9 @@ part of 'job_model.dart';
 
 _$JobModelImpl _$$JobModelImplFromJson(Map<String, dynamic> json) =>
     _$JobModelImpl(
-      id: json['id'] as String,
       title: json['title'] as String,
-      publicationDate: dateFromJson(json['publicationDate'] as String),
+      publicationDate:
+          dateFromJson(json['publicationDate'] as Map<String, dynamic>),
       location: json['location'] as String,
       company: json['company'] as String,
       sourceSite: json['sourceSite'] as String,
@@ -21,7 +21,6 @@ _$JobModelImpl _$$JobModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$JobModelImplToJson(_$JobModelImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'title': instance.title,
       'publicationDate': instance.publicationDate.toIso8601String(),
       'location': instance.location,

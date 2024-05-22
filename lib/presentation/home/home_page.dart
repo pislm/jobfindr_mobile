@@ -34,14 +34,20 @@ class HomePage extends ConsumerWidget {
                   itemBuilder: (context, job, index) {
                     return ListTile(
                       onTap: () => context.push(
-                        JobFindrRouter.jobDetails(job.id),
+                        JobFindrRouter.jobDetails,
                         extra: job,
                       ),
                       leading: CircleAvatar(
                         backgroundColor: Colors.transparent,
                         child: Hero(
                           tag: 'logo_${job.id}',
-                          child: CachedNetworkImage(imageUrl: job.logoImgLink),
+                          child: CachedNetworkImage(
+                            imageUrl: job.logoImgLink,
+                            errorWidget: (_, __, ___) => const Icon(
+                              Icons.work,
+                              color: Colors.grey,
+                            ),
+                          ),
                         ),
                       ),
                       title: Hero(
